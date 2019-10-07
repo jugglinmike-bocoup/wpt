@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>import-json-module-service-worker</title>
+    <script src="/resources/testharness.js"></script>
+    <script src="/resources/testharnessreport.js"></script>
+</head>
+
+<body>
+    <h1>import-json-module-service-worker</h1>
+
+    <script type="module">
+        promise_test(function (test) {
+            return navigator.serviceWorker.register('./serviceworker.js', { type: 'module' })
+                .then(function (reg) {
+                    //registration successful
+                    assert_true(true, "JSON Module loaded successfully within the context of a service worker")
+                }, function (error) {
+                    // registration failed, should never reach here
+                    assert_true(false, "JSON Module failed to load within the context of a service worker")
+                });
+        }, "JSON Modules should load within the context of a service worker");
+    </script>
+</body>
+
+</html>
